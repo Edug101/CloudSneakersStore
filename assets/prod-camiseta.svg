@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="400" viewBox="0 0 600 400" role="img" aria-label="Camiseta">
+  <rect width="600" height="400" fill="#f4f6fb"/>
+  <path d="M180 140c20-30 80-40 120-40s100 10 120 40l-30 20-30-20v150H240V160l-30 20-30-20z" fill="#dfe5f5" stroke="#cbd3e9" stroke-width="8" stroke-linejoin="round"/>
+  <rect x="260" y="170" width="80" height="90" rx="10" fill="#b7c2e0"/>
+  <text x="300" y="330" text-anchor="middle" fill="#5a6a9a" font-family="Arial, sans-serif" font-size="20" font-weight="700">Camiseta - troque pela sua foto</text>
+</svg>

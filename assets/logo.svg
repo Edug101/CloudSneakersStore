@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="260" height="90" viewBox="0 0 260 90" role="img" aria-label="Cloud Sneakers">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
+      <stop stop-color="#2563eb" offset="0"/>
+      <stop stop-color="#4f9bff" offset="1"/>
+    </linearGradient>
+  </defs>
+  <rect rx="18" ry="18" x="6" y="8" width="248" height="74" fill="#f4f6fb" stroke="#dbe3f5"/>
+  <path d="M40 62c-10 0-18-8-18-18s8-18 18-18c3.5 0 6.8 1 9.6 2.7C54.7 24.8 62 20 70.5 20 84 20 95 31 95 44.5c0 .5 0 1-.05 1.6C99 47 102 51 102 56c0 8-6.5 14.5-14.5 14.5z" fill="url(#g)" opacity="0.85"/>
+  <text x="120" y="54" fill="#1d2b4d" font-family="Arial, sans-serif" font-size="26" font-weight="800">Cloud</text>
+  <text x="120" y="72" fill="#2563eb" font-family="Arial, sans-serif" font-size="18" font-weight="700">Sneakers</text>
+</svg>
