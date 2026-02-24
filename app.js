@@ -65,6 +65,12 @@ function isValidImageSource(src){
   return isHttp || isAsset;
 }
 
+// Garante que imagens vindas do Supabase ou de JSON inválidos não quebrem no deploy
+function sanitizeProductImage(src){
+  if(isValidImageSource(src)) return src;
+  return PLACEHOLDER_IMG;
+}
+
 // ---------- Default data ----------
 function defaultProducts(){
   return [
@@ -105,16 +111,21 @@ function defaultProducts(){
 }
 
 function mapRowToProduct(row){
+  // Suporta variações de nomes de campo (title/name, old_price/oldPrice, image_url/image)
+  const price = row.price ?? row.value ?? 0;
+  const oldRaw = row.old_price ?? row.oldPrice ?? "";
+  const image = row.image_url ?? row.image;
+
   return {
     id: row.id,
-    name: row.name || "Produto",
-    category: row.category || "tenis",
-    price: Number(row.price) || 0,
-    oldPrice: row.old_price ? Number(row.old_price) : "",
+    name: row.name || row.title || "Produto",
+    category: row.category || row.type || "tenis",
+    price: Number(price) || 0,
+    oldPrice: oldRaw !== "" ? Number(oldRaw) : "",
     discount: row.discount || "",
-    best: row.best || "no",
-    image: row.image_url || PLACEHOLDER_IMG,
-    desc: row.description || ""
+    best: row.best || (row.is_best ? "yes" : "no"),
+    image: sanitizeProductImage(image),
+    desc: row.description || row.desc || ""
   };
 }
 
@@ -127,7 +138,7 @@ function mapProductToRow(p){
     old_price: p.oldPrice ? Number(p.oldPrice) : null,
     discount: p.discount || null,
     best: p.best || "no",
-    image_url: p.image || null,
+    image_url: isValidImageSource(p.image) ? p.image : null,
     description: p.desc || null,
     updated_at: new Date().toISOString()
   };
@@ -192,6 +203,7 @@ async function fetchProductsFromSupabase(){
     loadError = "Não foi possível carregar os produtos (Supabase).";
     productsCache = getProductsLocal();
   }else{
+    console.log("Supabase products:", data);
     productsCache = (data || []).map(mapRowToProduct);
     setProductsLocal(productsCache);
   }
